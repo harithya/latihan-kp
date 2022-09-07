@@ -5,7 +5,7 @@ include "koneksi.php";
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password'];
 
     $tampil = mysqli_query($koneksi, "SELECT * FROM master_user WHERE username='$username' AND password='$password'");
     $data = mysqli_fetch_array($tampil);
