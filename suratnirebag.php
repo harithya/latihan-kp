@@ -95,7 +95,7 @@ for ($i = 0; $i < 5; $i++) {
     $pdf->SetFont('Arial', '', '12');
     $pdf->SetFillColor(255, 255, 255);
     $pdf->Cell(9, 5, '', 0, '0', 'L');
-    $pdf->MultiCell(178, 6, 'Untuk mendukung kelancaran kegiatan penjualan komoditi ' . $data['jenis_produk'] . ' bersama ini kami mengajukan permohonan izin pelaksanaan Rebagging ' . $data['jenis_produk'] . ' di ' . $data['gudang_rebag'] . ' dengan rincian sebagai berikut :', 0, '0', 'L');
+    $pdf->MultiCell(178, 6, 'Untuk mendukung kelancaran  komoditi lorem  Untuk mendukung kelancaran  komoditi lorem ' . $data['jenis_produk'] . ' bersama ini kami mengajukan permohonan izin pelaksanaan Rebagging ' . $data['jenis_produk'] . ' di ' . $data['gudang_rebag'] . ' dengan rincian sebagai berikut :', 0, 'J');
     $pdf->Ln();
 
     $pdf->SetFont('Arial', 'B', '9');
@@ -125,19 +125,25 @@ for ($i = 0; $i < 5; $i++) {
     $pdf->Cell(18, 6, 'Sesudah', 1, '0', 'C', true);
     $pdf->Ln();
 
-    $pdf->SetFont('Arial', '', '9');
-    $pdf->SetFillColor(255, 255, 255);
-    $pdf->SetTextColor(0, 0, 0);
-    $pdf->SetDrawColor(0, 0, 0);
-    $pdf->Cell(10, 0, '', 0, '0', 'C');
-    $pdf->Cell(8, 12, '1', 1, '0', 'C');
-    $pdf->Cell(67, 12, $data['nama_produk'], 1, '0', 'L');
-    $pdf->Cell(16, 12, $data['koli_rebag'], 1, '0', 'C');
-    $pdf->Cell(16, 12, $data['kuantum_rebag'], 1, '0', 'C');
-    $pdf->Cell(32, 12, $data['nama_bahan'], 1, '0', 'C');
-    $pdf->Cell(18, 12, $data['kemasansebelum_rebag'] . 'kg', 1, '0', 'C');
-    $pdf->Cell(18, 12, $data['kemasansesudah_rebag'] . 'kg', 1, '0', 'C');
-    $pdf->Ln();
+    $jumlah = 0;
+    for ($i = 0; $i < 5; $i++) {
+        $pdf->SetFont('Arial', '', '9');
+        $pdf->SetFillColor(255, 255, 255);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetDrawColor(0, 0, 0);
+        $pdf->Cell(10, 0, '', 0, '0', 'C');
+        $pdf->Cell(8, 12, '1', 1, '0', 'C');
+        $pdf->Cell(67, 12, $data['nama_produk'], 1, '0', 'L');
+        $pdf->Cell(16, 12, $data['koli_rebag'], 1, '0', 'C');
+        $pdf->Cell(16, 12, $data['kuantum_rebag'], 1, '0', 'C');
+        $pdf->Cell(32, 12, $data['nama_bahan'], 1, '0', 'C');
+        $pdf->Cell(18, 12, $data['kemasansebelum_rebag'] . 'kg', 1, '0', 'C');
+        $pdf->Cell(18, 12, $data['kemasansesudah_rebag'] . 'kg', 1, '0', 'C');
+        $pdf->Ln();
+
+        $jumlah = $jumlah + $data['kuantum_rebag'];
+        // $jumlah += $data['kualitas_rebag'];
+    }
 
     $pdf->SetFont('Arial', 'B', '9');
     $pdf->SetFillColor(255, 255, 255);
@@ -146,7 +152,7 @@ for ($i = 0; $i < 5; $i++) {
     $pdf->Cell(10, 0, '', 0, '0', 'C');
     $pdf->Cell(75, 6, 'Jumlah', 1, '0', 'C');
     $pdf->Cell(16, 6, $data['koli_rebag'], 1, '0', 'C');
-    $pdf->Cell(16, 6, $data['kuantum_rebag'], 1, '0', 'C');
+    $pdf->Cell(16, 6, $jumlah, 1, '0', 'C');
     $pdf->Cell(68, 6, '', 1, '0', 'C');
     $pdf->Ln();
 
